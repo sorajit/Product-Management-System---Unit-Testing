@@ -104,6 +104,11 @@ const deleteProduct = (req,res,next)=>{
             next(err);
             return;
         }
+        if(results.rows.length == 0) {
+            err = new CustomError("ไม่พบสินค้า id : "+parseInt(req.params.id),404);
+            next(err);
+            return
+        }
         res.status(200).send("Deletion was successful");
     });
 };

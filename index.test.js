@@ -84,6 +84,17 @@ describe("PUT/products/:id", () => {
         stock: "100",
     });
     expect(response.statusCode).toBe(400);
+  });
+});
+
+describe("DELETE/products/:id", () => {
+  test("Success Case", async () => {
+    const response = await request(app).delete("/products/2");
+    expect(response.statusCode).toBe(200);
+  });
+  test("Not Found Case", async () => {
+    const response = await request(app).delete("/products/100");
+    expect(response.statusCode).toBe(404);
     createTestTB();
   });
 });
